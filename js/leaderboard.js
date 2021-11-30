@@ -3,6 +3,7 @@ const endpoint = "http://localhost:8000/API/v1/score/";
 
 const lead = "lead";
 const leaderboard = "leaderboard";
+const error_msg = "error_msg";
 
 const enter_btn = "enter_btn"
 const btn = document.getElementById(enter_btn);
@@ -24,7 +25,8 @@ function loadLeaderboard() {
                                   + "Score: " + info[i].score;
             leader.appendChild(new_li);
           }
-          console.log(info)
+        } else {
+          document.getElementById(error_msg).textContent = "Error"
         }
     }
 }
