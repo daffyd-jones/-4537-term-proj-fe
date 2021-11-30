@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>API Documentation</h1>
+    <p>All current requests and their possible parameters</p>
+
+    <h3>GET question</h3>
+    <pre>
+      Method to get either a random question from the database, or a specific
+      question based on ID.
+    </pre>
+    <pre>
+      questionid - specify id to question to get, changes output to be raw question data.
+    </pre>
+    <pre>
+      Output with no id param has correct answer scrambled into list of answers:
+
+      {
+        "questionid": 2,
+        "category": "Geography",
+        "type": "boolean",
+        "question": "What is the capital of Lithuania?",
+        "answers_list": [
+            "Helsinki",
+            "Riga",
+            "Vilnius",
+            "Tallinn"
+        ]
+      }
+
+
+    Output with id param provides raw question data:
+
+    [
+      {
+        "questionid": 2,
+        "category": "Geography",
+        "type": "boolean",
+        "difficulty": "hard",
+        "question": "What is the capital of Lithuania?",
+        "correct_answer": "Vilnius",
+        "incorrect_answer": "[\"Tallinn\", \"Helsinki\", \"Riga\"]"
+      }
+    ]
+
+    </pre>
+
+    <h3>GET score</h3>
+    <pre>
+      Method to get a list of high scores in descending order.
+    </pre>
+    <pre>
+      count - number of scores to receive
+    </pre>
+    <pre>
+      GET score returns list of (count) scores in descending order.
+
+      [
+        {
+          "scoreid": 1,
+          "score": 25,
+          "username": "Joe"
+        },
+        {
+          "scoreid": 2,
+          "score": 12,
+          "username": "Matt"
+        },
+        {...}
+      ]
+    </pre>
+
+    <h3>GET stats</h3>
+    <pre>
+      Method to get stats of query usage from the server.
+    </pre>
+    <pre>
+      No parameters.
+    </pre>
+    <pre>
+      GET stats output as follows:
+      [
+        {
+          "method": "POST question",
+          "uses": 21
+        }, 
+        {...}, 
+      ]
+    </pre>
+
+    <h3>POST answer</h3>
+    <pre>
+      Method to post a user's answer to a question and receive confirmation as to whether its correct or not.
+    </pre>
+    <pre>
+      questionid - id of question that is being answered
+      answer - answer being given to the question
+    </pre>
+    <pre>
+      Returns object representing success or failure of answer.
+
+      {
+        "questionid": "2",
+        "is_correct": true
+      }
+    </pre>
+
+    <h3>POST question</h3>
+    <pre>
+      Method to post a new question to the database.
+    </pre>
+    <pre>
+      category - specific category of questions to select from
+      difficulty - select questions of only certain difficulty (easy, medium, hard) 
+      type - specify type of questions (tf, multiple)
+      question - body of the question
+      correct - text string representing correct answer 
+      incorrect - stringify'd JSON array of strings representing false answers
+    </pre>
+    <pre>
+      Returns SQL response object of the following form: 
+
+      {
+        "fieldCount": 0,
+        "affectedRows": 1,
+        "insertId": 0,
+        "serverStatus": 2,
+        "warningCount": 0,
+        "message": "",
+        "protocol41": true,
+        "changedRows": 0
+      }
+    </pre>
+
+    <h3>POST score</h3>
+    <pre>
+      Method to submit a new session score to the database.
+    </pre>
+    <pre>
+      username - username to assign score 
+      score - score of user
+    </pre>
+    <pre>
+      Returns SQL response object of the following form: 
+
+      {
+        "fieldCount": 0,
+        "affectedRows": 1,
+        "insertId": 0,
+        "serverStatus": 2,
+        "warningCount": 0,
+        "message": "",
+        "protocol41": true,
+        "changedRows": 0
+      }
+    </pre>
+
+    <h3>PUT question</h3>
+    <pre>
+      Method to update a question in the database given it's questionid.
+    </pre>
+    <pre>
+      questionid - id of question to be altered 
+      category - specific category of questions to select from 
+      difficulty - select questions of only certain difficulty (easy, medium, hard) 
+      type - specify type of questions (boolean, multiple)
+      question - body of the question
+      correct - text string representing correct answer 
+      incorrect - stringify'd JSON array of strings representing false answers
+    </pre>
+    <pre>
+      Returns SQL response object of the following form: 
+
+      {
+        "fieldCount": 0,
+        "affectedRows": 1,
+        "insertId": 0,
+        "serverStatus": 2,
+        "warningCount": 0,
+        "message": "",
+        "protocol41": true,
+        "changedRows": 0
+      }
+    </pre>
+
+    <h3>DELETE question</h3>
+    <pre>
+      Method to delete a question from the database given its questionid.
+    </pre>
+    <pre>
+      id - id of question to be deleted from database.
+    </pre>
+    <pre>
+      Returns SQL response object of the following form: 
+
+      {
+        "fieldCount": 0,
+        "affectedRows": 1,
+        "insertId": 0,
+        "serverStatus": 2,
+        "warningCount": 0,
+        "message": "",
+        "protocol41": true,
+        "changedRows": 0
+      }
+    </pre>
+  </body>
+</html>
