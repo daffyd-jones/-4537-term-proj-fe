@@ -6,7 +6,9 @@
   <title>Document</title>
 </head>
 <body>
-  <div>
+  <div id="hold">
+    <p>add username</p>
+    <input type="text" id="username">
     <button id="start-button" onclick="nextQuestion()">Start</button>
     <p id="category"></p>
     <br>
@@ -15,6 +17,7 @@
   </div>
     <script>
       let sss = {
+        username: '',
         qid: 0,
         count: 0,
       }
@@ -23,47 +26,59 @@
 
       function checkAns(i) {
         console.log(sss);
-        let ansCheck = {
-          questionid: sss.qid,
-          answer: i,
-        }
-        console.log(ansCheck);
+        // let ansCheck = {
+        //   questionid: sss.qid,
+        //   answer: i,
+        // }
+        // let str = JSON.stringify(ansCheck);
+        // console.log(str);
         xhttp.open("POST", "http://localhost:8000/API/v1/answer/", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send(ansCheck);
+        let params = "questionid=" + sss.qid + "&answer=" + i;
+        xhttp.send(params);
         xhttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
-            let rtrn = this.response;
+            let rtrn = JSON.parse(this.response);
+            console.log(rtrn);
             if (rtrn.is_correct) {
               document.getElementById('question').innerHTML = "asnwer is correct";
               sss.count++;
               nextQuestion();
             } else {
               document.getElementById('question').innerHTML = "asnwer is incorrect";
+              document.getElementById('answers').innerHTML = '';
               sendScore();
-              document.location.href = 'index.html';
+              setTimeout(() => {document.location.href = 'index.html';}, 3000);
+              // document.location.href = 'index.html';
             }
           }
         }
       }
 
       function sendScore() {
-        let score = {
-          username: "name",
-          score: sss.count
-        } 
+        // let score = {
+        //   username: "name",
+        //   score: sss.count
+        // } 
+        console.log("hey bitch");
+        let params = "username=" + sss.username + "&score=" + sss.count;
         xhttp.open("POST", "http://localhost:8000/API/v1/score/", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send(score);
+        console.log("sending");
+        xhttp.send(params);
+        console.log("after send");
         xhttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText);
+            console.log("rasdfas send");
+            console.log(this.response);
           }
         }
       }
 
       function nextQuestion() {
         document.getElementById('start-button').style.visibility = "hidden";
+        sss.username = document.getElementById("username").value;
+        document.getElementById('answers').innerHTML = '';
         xhttp.open("GET", "http://localhost:8000/API/v1/question/", true);
         xhttp.send();
         xhttp.onreadystatechange = function () {
