@@ -25,8 +25,6 @@ function loadLeaderboard() {
                                   + "Score: " + info[i].score;
             leader.appendChild(new_li);
           }
-        } else {
-          document.getElementById(error_msg).textContent = "Error"
         }
     }
 }

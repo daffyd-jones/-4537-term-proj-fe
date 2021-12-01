@@ -41,7 +41,7 @@ function addToDB() {
     let incorrect3 = document.getElementById(q_incorrect3).value;
     let incorrect = new Array(incorrect1, incorrect2, incorrect3);
     let invalid_msg = "Invalid Input";
-    let success_msg = "Add question to database";
+    let success_msg = "Added question to database";
     let failure_msg = "Failed to add question";
 
     if (validation(id, category, type, diff, q, answer, incorrect)) {
