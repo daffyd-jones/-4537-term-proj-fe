@@ -1,0 +1,153 @@
+body {background-color:antiquewhite;}
+
+#menu-div {
+  left: 45%;
+  top: 25%;
+  position: absolute;
+  padding: 1%;
+}
+
+header {
+  text-align: center;
+  margin: 10%;
+}
+
+.butt {
+  margin: 3%;
+  align-items: center;
+  left: 45%;
+}
+
+#leader-div {
+  left: 45%;
+  top: 25%;
+  position: absolute;
+  padding: 1%;
+}
+
+#hold {
+  left: 45%;
+  top: 25%;
+  position: absolute;
+  padding: 1%;
+}
+
+#addQ-div {
+  left: 45%;
+  top: 25%;
+  position: absolute;
+  padding: 1%;
+}
+
+#cpQ-div {
+  left: 40%;
+  top: 25%;
+  position: absolute;
+  padding: 1%;
+}
+
+#dQ-div {
+  left: 40%;
+  top: 25%;
+  position: absolute;
+  padding: 1%;
+}
+
+/*  */
+@media only screen and (max-width: 800px) {
+
+  body {
+    background-color: aqua;
+  }
+
+  #menu-div {
+    left: 40%;
+    top: 15%;
+    position: absolute;
+    padding: 1%;
+  }
+
+  #leader-div {
+    left: 35%;
+    top: 25%;
+    position: absolute;
+    padding: 1%;
+  }
+  
+  #hold {
+    left: 40%;
+    top: 25%;
+    position: absolute;
+    padding: 1%;
+  }
+  
+  #addQ-div {
+    left: 30%;
+    top: 25%;
+    position: absolute;
+    padding: 1%;
+  }
+  
+  #cpQ-div {
+    left: 30%;
+    top: 25%;
+    position: absolute;
+    padding: 1%;
+  }
+  
+  #dQ-div {
+    left: 25%;
+    top: 25%;
+    position: absolute;
+    padding: 1%;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+
+  body {
+    background-color:cadetblue;
+  }
+
+  #menu-div {
+    left: 30%;
+    top: 15%;
+    position: absolute;
+    padding: 1%;
+  }
+
+  #leader-div {
+    left: 25%;
+    top: 15%;
+    position: absolute;
+    padding: 1%;
+  }
+  
+  #hold {
+    left: 30%;
+    top: 15%;
+    position: absolute;
+    padding: 1%;
+  }
+  
+  #addQ-div {
+    left: 30%;
+    top: 15%;
+    position: absolute;
+    padding: 1%;
+  }
+  
+  #cpQ-div {
+    left: 30%;
+    top: 15%;
+    position: absolute;
+    padding: 1%;
+  }
+  
+  #dQ-div {
+    left: 30%;
+    top: 15%;
+    position: absolute;
+    padding: 1%;
+  }
+}
