@@ -11,7 +11,7 @@ btn.addEventListener("click", loadLeaderboard)
 
 function loadLeaderboard() {
     let amount = document.getElementById(lead).value;
-    let params = "?count=" + amount;
+    let params = "count=" + amount;
     xhttp.open("GET", endpoint, true);
     xhttp.send(params);
     xhttp.onreadystatechange = function () {
